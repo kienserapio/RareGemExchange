@@ -101,7 +101,7 @@ function App() {
                   required
                 />
                 <button type="submit" className="request-btn">
-                  REQUEST ACCESS
+                  NOTIFY ME
                 </button>
               </>
             )}

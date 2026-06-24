@@ -137,6 +137,8 @@
   align-items: center;
   gap: 28px;
   margin-top: 80px;
+  padding-top: 40px;
+  padding-bottom: 48px;
   width: 100%;
   max-width: 700px;
   text-align: center;
@@ -184,7 +186,7 @@
   font-family: 'Montserrat', sans-serif;
   font-size: 18px;
   font-weight: 400;
-  line-height: 1.8;
+  line-height: 2.2;
   color: #D6D3D1;
   text-align: center;
 }
@@ -195,10 +197,10 @@
 
 .launch-text {
   font-family: 'Montserrat', sans-serif;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 400;
-  letter-spacing: 0.08em;
-  color: #78716C;
+  letter-spacing: 0;
+  color: #666;
   text-align: center;
 }
 
@@ -209,10 +211,12 @@
   width: 100%;
   max-width: 580px;
   border: 1px solid #D8A07A;
+  overflow: hidden;
 }
 
 .email-input {
   flex: 1;
+  min-width: 0;
   height: 60px;
   background: transparent;
   border: none;
@@ -309,7 +313,8 @@
 
 @media (max-width: 768px) {
   .main {
-    padding-top: 96px;
+    padding-top: 80px;
+    padding-bottom: 40px;
   }
 
   .gem-logo {
@@ -326,6 +331,16 @@
     letter-spacing: 0.25em;
   }
 
+  .supporting-text {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+  }
+
+  .coming-soon-section {
+    margin-top: 56px;
+    gap: 24px;
+  }
+
   .coming-soon-text {
     font-size: 36px;
     letter-spacing: 0.1em;
@@ -336,27 +351,116 @@
   }
 
   .body-text p {
-    font-size: 15px;
+    font-size: 14px;
   }
 
   .email-form {
-    flex-direction: column;
-    border: none;
-    gap: 0;
+    border: 1px solid #D8A07A;
+    border-radius: 4px;
   }
 
   .email-input {
-    border: 1px solid #D8A07A;
-    border-bottom: none;
     height: 56px;
+    text-align: center;
   }
 
   .request-btn {
     height: 56px;
-    border: 1px solid #D8A07A;
+    padding: 0 28px;
   }
 
   .footer {
     padding: 32px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 64px;
+  }
+
+  .gem-logo {
+    width: 80px;
+  }
+
+  .main-heading {
+    font-size: 36px;
+    letter-spacing: 0.12em;
+  }
+
+  .subheading {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+  }
+
+  .supporting-text {
+    font-size: 10px;
+  }
+
+  .divider {
+    width: 140px;
+    gap: 10px;
+  }
+
+  .coming-soon-section {
+    margin-top: 40px;
+    gap: 20px;
+  }
+
+  .coming-soon-text {
+    font-size: 28px;
+    letter-spacing: 0.08em;
+  }
+
+  .body-text p {
+    font-size: 13px;
+    line-height: 2;
+  }
+
+  .tagline {
+    font-size: 13px !important;
+  }
+
+  .email-input {
+    height: 52px;
+    font-size: 14px;
+    padding: 0 16px;
+  }
+
+  .request-btn {
+    height: 52px;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    padding: 0 20px;
+  }
+
+  .socials {
+    gap: 24px;
+  }
+
+  .footer {
+    padding: 24px 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .main-heading {
+    font-size: 30px;
+    letter-spacing: 0.1em;
+  }
+
+  .coming-soon-text {
+    font-size: 24px;
+  }
+
+  .email-input {
+    height: 48px;
+  }
+
+  .request-btn {
+    height: 48px;
+    font-size: 11px;
   }
 }
