@@ -1,0 +1,260 @@
+/* ════════════════════════════════════════════════════════════════
+   THE COLLECTION — gemstone preview grid.
+   Transparent section; tokens only (see src/styles/tokens.css).
+   Sharp rectangles, 0px radius throughout.
+   ════════════════════════════════════════════════════════════════ */
+
+.gallery {
+  padding-top: clamp(64px, 10vw, 112px);
+  padding-bottom: clamp(64px, 10vw, 112px);
+}
+
+/* ── Header ─────────────────────────────────────────────────────── */
+
+.gallery-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  margin-bottom: clamp(40px, 6vw, 72px);
+}
+
+.gallery-title {
+  margin: 0;
+}
+
+.gallery-sub {
+  margin: 0;
+  max-width: 46ch;
+  font-family: var(--rg-font-body);
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--rg-text-muted);
+}
+
+/* ── Grid ───────────────────────────────────────────────────────── */
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.gallery-cell {
+  display: flex;
+}
+
+/* ── Card ───────────────────────────────────────────────────────── */
+
+.gallery-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--rg-surface-2);
+  border: 1px solid var(--rg-border-strong);
+  transition:
+    border-color 0.45s var(--rg-ease),
+    transform 0.45s var(--rg-ease),
+    box-shadow 0.45s var(--rg-ease);
+}
+
+.gallery-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--rg-gold-light);
+  box-shadow: 0 26px 64px -30px rgba(216, 160, 122, 0.5);
+}
+
+/* ── Gem plate (faceted color fill) ─────────────────────────────── */
+
+.gallery-media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background-color: var(--gem);
+  background-image:
+    radial-gradient(120% 90% at 28% 18%, rgba(255, 255, 255, 0.30), transparent 46%),
+    linear-gradient(305deg, rgba(0, 0, 0, 0.5) 0%, transparent 52%),
+    linear-gradient(60deg, var(--gem-2) 0%, transparent 58%),
+    conic-gradient(from 215deg at 50% 42%, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.1));
+}
+
+/* table-cut facet — rotated square with a hairline edge */
+.gallery-facet {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 46%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%) rotate(45deg);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.34), transparent 55%),
+    linear-gradient(315deg, rgba(0, 0, 0, 0.28), transparent 55%);
+  box-shadow: inset 0 0 22px rgba(255, 255, 255, 0.14);
+  transition: transform 0.55s var(--rg-ease), border-color 0.45s var(--rg-ease);
+}
+
+.gallery-card:hover .gallery-facet {
+  transform: translate(-50%, -50%) rotate(135deg) scale(1.05);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+/* monochrome lab tag — top-left, low opacity until hover */
+.gallery-tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 5px 10px;
+  font-family: var(--rg-font-ui);
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.78);
+  background: rgba(8, 8, 8, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: color 0.4s var(--rg-ease), border-color 0.4s var(--rg-ease);
+}
+
+.gallery-card:hover .gallery-tag {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* "View Details" hint — fades up from the bottom on hover */
+.gallery-cta-hint {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 14px;
+  text-align: center;
+  font-family: var(--rg-font-ui);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--rg-cream);
+  background: linear-gradient(to top, rgba(8, 8, 8, 0.72), transparent);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.45s var(--rg-ease), transform 0.45s var(--rg-ease);
+}
+
+.gallery-card:hover .gallery-cta-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Info strip ─────────────────────────────────────────────────── */
+
+.gallery-info {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 22px 22px;
+  border-top: 1px solid var(--rg-border);
+}
+
+.gallery-name {
+  margin: 0;
+  font-family: var(--rg-font-serif);
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--rg-cream);
+  transition: color 0.45s var(--rg-ease);
+}
+
+.gallery-card:hover .gallery-name {
+  color: var(--rg-gold-light);
+}
+
+.gallery-spec {
+  margin: 0;
+  flex-shrink: 0;
+  font-family: var(--rg-font-ui);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--rg-text-muted);
+  white-space: nowrap;
+}
+
+/* ── Footer CTA ─────────────────────────────────────────────────── */
+
+.gallery-foot {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(40px, 6vw, 64px);
+}
+
+.gallery-foot-btn {
+  display: inline-block;
+  padding: 17px 52px;
+  font-family: var(--rg-font-ui);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--rg-gold-light);
+  background: transparent;
+  border: 1px solid var(--rg-gold-light);
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color 0.35s var(--rg-ease),
+    color 0.35s var(--rg-ease),
+    box-shadow 0.35s var(--rg-ease);
+}
+
+.gallery-foot-btn:hover {
+  background: var(--rg-gold-light);
+  color: var(--rg-gold-deep);
+  box-shadow: 0 16px 44px -20px rgba(216, 160, 122, 0.6);
+}
+
+/* ── Responsive ─────────────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+  .gallery-foot-btn {
+    width: 100%;
+    text-align: center;
+    padding: 16px 24px;
+    letter-spacing: 0.2em;
+  }
+}
+
+/* ── Reduced motion ─────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-card,
+  .gallery-facet,
+  .gallery-cta-hint {
+    transition: border-color 0.4s var(--rg-ease), color 0.4s var(--rg-ease);
+  }
+  .gallery-card:hover {
+    transform: none;
+  }
+  .gallery-card:hover .gallery-facet {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  .gallery-cta-hint {
+    opacity: 1;
+    transform: none;
+  }
+}

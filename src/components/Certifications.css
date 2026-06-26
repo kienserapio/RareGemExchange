@@ -1,0 +1,139 @@
+/* ════════════════════════════════════════════════════════════════
+   CERTIFICATIONS — institutional credibility ribbon.
+   Hairline-bounded band; monochrome lab lockups that warm on hover.
+   Transparent section; tokens only (see src/styles/tokens.css).
+   ════════════════════════════════════════════════════════════════ */
+
+.certs {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  border-top: 1px solid var(--rg-border);
+  border-bottom: 1px solid var(--rg-border);
+  background: var(--rg-surface);
+}
+
+.certs-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+  padding-top: clamp(40px, 6vw, 64px);
+  padding-bottom: clamp(40px, 6vw, 64px);
+}
+
+.certs-eyebrow {
+  text-align: center;
+}
+
+/* ── Lab row — thin vertical dividers between lockups ────────────── */
+
+.certs-row {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.certs-item {
+  flex: 1 1 0;
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 28px;
+  text-align: center;
+  /* monochrome / low-opacity until hover */
+  color: var(--rg-text-muted);
+  opacity: 0.55;
+  border-left: 1px solid var(--rg-border);
+  transition: opacity 0.4s var(--rg-ease), color 0.4s var(--rg-ease);
+  cursor: default;
+}
+
+.certs-item:first-child {
+  border-left: none;
+}
+
+.certs-item:hover {
+  opacity: 1;
+  color: var(--rg-gold-light);
+}
+
+.certs-abbr {
+  font-family: var(--rg-font-serif);
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: 0.16em;
+  line-height: 1;
+  color: currentColor;
+  text-shadow: 0 0 24px rgba(216, 160, 122, 0);
+  transition: text-shadow 0.4s var(--rg-ease);
+}
+
+.certs-item:hover .certs-abbr {
+  text-shadow: 0 0 24px rgba(216, 160, 122, 0.35);
+}
+
+.certs-name {
+  font-family: var(--rg-font-ui);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  color: var(--rg-text-dim);
+  transition: color 0.4s var(--rg-ease);
+  max-width: 18ch;
+}
+
+.certs-item:hover .certs-name {
+  color: var(--rg-text-muted);
+}
+
+/* ── Responsive ─────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .certs-row {
+    gap: 12px 0;
+  }
+  .certs-item {
+    flex: 0 1 calc(50% - 1px);
+    padding: 18px 16px;
+  }
+  /* reset borders, then divide the 2x2 grid cleanly */
+  .certs-item {
+    border-left: none;
+  }
+  .certs-item:nth-child(even) {
+    border-left: 1px solid var(--rg-border);
+  }
+  .certs-item:nth-child(n + 3) {
+    border-top: 1px solid var(--rg-border);
+  }
+  .certs-abbr {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 480px) {
+  .certs-abbr {
+    font-size: 23px;
+  }
+  .certs-name {
+    font-size: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .certs-item,
+  .certs-abbr,
+  .certs-name {
+    transition: none;
+  }
+}

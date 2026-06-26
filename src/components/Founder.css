@@ -1,0 +1,183 @@
+/* ════════════════════════════════════════════════════════════════
+   MEET THE FOUNDER — estate-style two-column split.
+   Transparent section; tokens only (see src/styles/tokens.css).
+   Hard-edged portrait frame (0px radius); handwritten gold signature.
+   ════════════════════════════════════════════════════════════════ */
+
+.founder {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+  padding-top: clamp(72px, 11vw, 132px);
+  padding-bottom: clamp(72px, 11vw, 132px);
+}
+
+.founder-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  align-items: center;
+  column-gap: 72px;
+  row-gap: 48px;
+}
+
+/* ── LEFT: portrait frame ───────────────────────────────────────── */
+
+.founder-portrait-col {
+  display: flex;
+  justify-content: center;
+}
+
+/* Estate "double frame": the figure is the outer rule, ::after the
+   thin inset gold line offset inward. */
+.founder-portrait {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 4 / 5;
+  border: 1px solid var(--rg-border-strong);
+  background: var(--rg-surface-2);
+}
+
+.founder-portrait::after {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 1px solid var(--rg-border);
+  pointer-events: none;
+}
+
+/* Real photo (when supplied) fills the frame edge-to-edge */
+.founder-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Placeholder plate — branded monogram until a portrait is dropped in */
+.founder-portrait-plate {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background:
+    radial-gradient(120% 80% at 50% 30%, rgba(216, 160, 122, 0.08), transparent 60%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.25));
+}
+
+.founder-monogram {
+  font-family: var(--rg-font-serif);
+  font-weight: 600;
+  font-size: 72px;
+  letter-spacing: 0.1em;
+  color: var(--rg-gold);
+  opacity: 0.85;
+  text-shadow: 0 0 40px rgba(216, 160, 122, 0.25);
+}
+
+.founder-portrait-label {
+  font-family: var(--rg-font-ui);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--rg-text-dim);
+}
+
+/* ── RIGHT: heritage statement ──────────────────────────────────── */
+
+.founder-content {
+  max-width: 600px;
+}
+
+.founder-title {
+  margin: 18px 0 0;
+  text-align: left;
+}
+
+.founder-statement {
+  margin-top: 32px;
+}
+
+.founder-para {
+  margin: 0;
+  font-family: var(--rg-font-body);
+  font-size: 17px;
+  line-height: 1.85;
+  color: var(--rg-text-body);
+}
+
+.founder-para + .founder-para {
+  margin-top: 22px;
+}
+
+/* ── Signature sign-off ─────────────────────────────────────────── */
+
+.founder-signoff {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--rg-border);
+}
+
+.founder-signature {
+  font-family: 'Great Vibes', cursive;
+  font-size: 52px;
+  line-height: 0.9;
+  color: var(--rg-gold-light);
+  text-shadow: 0 0 30px rgba(216, 160, 122, 0.25);
+}
+
+.founder-credit {
+  font-family: var(--rg-font-ui);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--rg-text-muted);
+}
+
+/* ── Responsive ─────────────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .founder-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    row-gap: 48px;
+  }
+  .founder-content {
+    max-width: 600px;
+    width: 100%;
+  }
+  .founder-title {
+    text-align: center;
+  }
+  /* center the eyebrow only within this section (scoped, no global leak) */
+  .founder-content > .rg-eyebrow {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .founder-portrait {
+    max-width: 100%;
+  }
+  .founder-monogram {
+    font-size: 56px;
+  }
+  .founder-para {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .founder-signature {
+    font-size: 44px;
+  }
+}

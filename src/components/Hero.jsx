@@ -29,6 +29,15 @@ export default function Hero() {
       <Reveal as="p" delay={0.45} className="hero-support">
         FINE GEMS • RARE STONES • GLOBAL TRADING
       </Reveal>
+
+      <Reveal className="hero-cta" delay={0.55}>
+        <a href="#our-gems" className="hero-cta-primary">
+          Explore the Collection
+        </a>
+        <a href="#coming-soon" className="hero-cta-secondary">
+          Inquire Privately
+        </a>
+      </Reveal>
     </section>
   )
 }

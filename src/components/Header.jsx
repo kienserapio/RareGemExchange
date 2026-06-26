@@ -29,7 +29,7 @@ const CloseIcon = () => (
 const NAV_LINKS = [
   { label: 'Home', href: '#top', active: true },
   { label: 'About', href: '#about' },
-  { label: 'Our Gems', href: '#standards' },
+  { label: 'Our Gems', href: '#our-gems' },
 ]
 
 function Header() {
