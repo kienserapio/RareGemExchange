@@ -1,0 +1,157 @@
+/* ════════════════════════════════════════════════════════════════
+   OUR STANDARDS — three commitment cards.
+   Transparent section; tokens only (see src/styles/tokens.css).
+   ════════════════════════════════════════════════════════════════ */
+
+.standards {
+  /* .rg-section supplies max-width + horizontal gutters */
+  padding-top: clamp(64px, 10vw, 112px);
+  padding-bottom: clamp(64px, 10vw, 112px);
+}
+
+/* ── Header ─────────────────────────────────────────────────────── */
+
+.standards-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  margin-bottom: clamp(48px, 8vw, 96px);
+}
+
+.standards-title {
+  margin: 0;
+}
+
+/* ── Grid ───────────────────────────────────────────────────────── */
+
+.standards-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+
+/* Reveal wrapper = flex item; lets each card stretch to equal height */
+.standards-cell {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+}
+
+/* ── Card ───────────────────────────────────────────────────────── */
+
+.standards-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 32px;
+  padding: 49px 40px 56px;
+  background-color: var(--rg-surface-2);
+  border: 1px solid var(--rg-border-strong);
+  transition:
+    border-color 0.45s var(--rg-ease),
+    transform 0.45s var(--rg-ease),
+    background-color 0.45s var(--rg-ease),
+    box-shadow 0.45s var(--rg-ease);
+}
+
+.standards-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--rg-gold-light);
+  background-color: var(--rg-surface);
+  box-shadow: 0 24px 60px -28px rgba(216, 160, 122, 0.45);
+}
+
+/* ── Icon ───────────────────────────────────────────────────────── */
+
+.standards-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--rg-gold-light);
+}
+
+.standards-svg {
+  display: block;
+  width: 40px;
+  height: 40px;
+  transition: transform 0.45s var(--rg-ease);
+}
+
+.standards-card:hover .standards-svg {
+  transform: scale(1.06);
+}
+
+/* ── Text ───────────────────────────────────────────────────────── */
+
+/* Group title + body tightly, decoupled from the icon gap */
+.standards-card-title {
+  margin: 0;
+  font-family: var(--rg-font-serif);
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 1.55;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rg-cream);
+  transition: color 0.45s var(--rg-ease);
+}
+
+.standards-card:hover .standards-card-title {
+  color: var(--rg-gold-light);
+}
+
+.standards-card-body {
+  margin: 16px 0 0;
+  max-width: 32ch;
+  font-family: var(--rg-font-body);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--rg-text-muted);
+}
+
+/* ── Responsive ─────────────────────────────────────────────────── */
+
+/* Tablet: wrap to two columns (third card centers on its own row) */
+@media (max-width: 768px) {
+  .standards-cell {
+    flex: 0 1 calc((100% - 24px) / 2);
+  }
+  .standards-card {
+    padding: 40px 32px 44px;
+    gap: 28px;
+  }
+}
+
+/* Mobile: single column */
+@media (max-width: 480px) {
+  .standards-cell {
+    flex: 1 1 100%;
+  }
+  .standards-card {
+    padding: 36px 28px 40px;
+  }
+  .standards-svg {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* Respect reduced-motion: drop the hover lift/scale */
+@media (prefers-reduced-motion: reduce) {
+  .standards-card,
+  .standards-svg {
+    transition: border-color 0.45s var(--rg-ease), color 0.45s var(--rg-ease);
+  }
+  .standards-card:hover {
+    transform: none;
+  }
+  .standards-card:hover .standards-svg {
+    transform: none;
+  }
+}

@@ -1,0 +1,288 @@
+/* ════════════════════════════════════════════════════════════════
+   Header — sticky top navigation for Rare Gem Exchange
+   Full-width translucent bar; inner content aligned to page width.
+   ════════════════════════════════════════════════════════════════ */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100; /* below the floating chatbot (~1000) */
+  width: 100%;
+  background: rgba(8, 8, 8, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rg-border-strong);
+}
+
+/* Inner container — centered to the page max width, 64px gutters */
+.header-inner {
+  max-width: var(--rg-maxw);
+  margin: 0 auto;
+  min-height: 80px;
+  padding: 0 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* ── Left cluster: brand + nav ───────────────────────────── */
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.header-brand {
+  font-family: var(--rg-font-serif);
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rg-gold-light);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.25s var(--rg-ease);
+}
+
+.header-brand:hover {
+  color: var(--rg-cream);
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-link {
+  position: relative;
+  font-family: var(--rg-font-ui);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--rg-nav);
+  text-decoration: none;
+  padding-bottom: 5px;
+  transition: color 0.25s var(--rg-ease);
+}
+
+/* Animated underline — grows from left on hover; full on active */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background: var(--rg-gold-light);
+  transition: width 0.3s var(--rg-ease);
+}
+
+.nav-link:hover {
+  color: var(--rg-cream);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-link--active {
+  color: var(--rg-cream);
+}
+
+.nav-link--active::after {
+  width: 100%;
+}
+
+/* ── Right cluster: search + contact + hamburger ─────────── */
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.header-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--rg-gold-light);
+  transition: color 0.25s var(--rg-ease);
+}
+
+.header-icon-btn:hover {
+  color: var(--rg-cream);
+}
+
+.header-contact-btn {
+  font-family: var(--rg-font-ui);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--rg-gold-deep);
+  background: var(--rg-gold-light);
+  padding: 12px 32px;
+  border: none;
+  border-radius: 0; /* sharp, luxury */
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.25s var(--rg-ease);
+}
+
+.header-contact-btn:hover {
+  background: var(--rg-cream);
+}
+
+/* Hamburger — hidden on desktop, shown on mobile */
+.header-menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--rg-gold-light);
+  transition: color 0.25s var(--rg-ease);
+}
+
+.header-menu-btn:hover {
+  color: var(--rg-cream);
+}
+
+/* ── Mobile drawer ───────────────────────────────────────── */
+
+.header-drawer {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-8px);
+  background: rgba(8, 8, 8, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rg-border);
+  transition:
+    max-height 0.4s var(--rg-ease),
+    opacity 0.3s var(--rg-ease),
+    transform 0.3s var(--rg-ease);
+}
+
+.header-drawer--open {
+  max-height: 360px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.header-drawer-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+  padding: 16px var(--rg-gutter) 24px;
+}
+
+.drawer-link {
+  font-family: var(--rg-font-ui);
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--rg-nav);
+  text-decoration: none;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rg-border);
+  transition: color 0.25s var(--rg-ease);
+}
+
+.drawer-link:hover,
+.drawer-link--active {
+  color: var(--rg-cream);
+}
+
+.drawer-contact-btn {
+  margin-top: 16px;
+  font-family: var(--rg-font-ui);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: var(--rg-gold-deep);
+  background: var(--rg-gold-light);
+  padding: 14px 32px;
+  text-decoration: none;
+  transition: background-color 0.25s var(--rg-ease);
+}
+
+.drawer-contact-btn:hover {
+  background: var(--rg-cream);
+}
+
+/* ── Focus visibility (keyboard) ─────────────────────────── */
+
+.header a:focus-visible,
+.header button:focus-visible {
+  outline: 2px solid var(--rg-gold-light);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+
+/* Tablet / small desktop — tighten spacing */
+@media (max-width: 1024px) {
+  .header-inner {
+    padding: 0 40px;
+  }
+  .header-left {
+    gap: 32px;
+  }
+  .header-nav {
+    gap: 24px;
+  }
+}
+
+/* Mobile — collapse inline nav, reveal hamburger */
+@media (max-width: 768px) {
+  .header-inner {
+    min-height: 68px;
+    padding: 0 var(--rg-gutter);
+  }
+  .header-nav,
+  .header-icon-btn,
+  .header-contact-btn {
+    display: none;
+  }
+  .header-menu-btn {
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-brand {
+    font-size: 15px;
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .header-drawer,
+  .nav-link,
+  .nav-link::after,
+  .header-brand,
+  .header-contact-btn,
+  .drawer-contact-btn,
+  .header-icon-btn,
+  .header-menu-btn {
+    transition: none;
+  }
+}

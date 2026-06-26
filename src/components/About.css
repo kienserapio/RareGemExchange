@@ -1,0 +1,212 @@
+/* ════════════════════════════════════════════════════════════════
+   About — "The Architects of Rarity"
+   Transparent section (page provides the fixed dark background).
+   ════════════════════════════════════════════════════════════════ */
+
+.about {
+  position: relative;
+  z-index: 1;
+  background: transparent;
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
+/* Two-column grid: logo lockup (left) + copy (right). */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  align-items: center;
+  column-gap: 72px;
+  row-gap: 56px;
+}
+
+/* ── LEFT: logo lockup ──────────────────────────────────── */
+
+.about-lockup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.about-logo {
+  width: 140px;
+  height: auto;
+  display: block;
+}
+
+.about-wordmark {
+  margin: 22px 0 0;
+  font-family: var(--rg-font-serif);
+  font-weight: 600;
+  font-size: 38px;
+  line-height: 1.18;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--rg-gold);
+  text-shadow: 0 0 20px rgba(216, 160, 122, 0.2);
+}
+
+/* divider: 48px line · diamond glyph · 48px line, at 60% opacity */
+.about-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 22px;
+  opacity: 0.6;
+}
+
+.about-divider-line {
+  width: 48px;
+  height: 1px;
+  background: var(--rg-gold);
+}
+
+.about-divider-diamond {
+  font-size: 10px;
+  line-height: 1;
+  color: var(--rg-gold);
+}
+
+/* ── RIGHT: copy + expertise ────────────────────────────── */
+
+.about-content {
+  max-width: 580px;
+}
+
+.about-label {
+  margin: 0;
+  font-family: var(--rg-font-serif);
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rg-gold-light);
+}
+
+.about-body {
+  margin: 26px 0 0;
+  font-family: var(--rg-font-body);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--rg-text-body);
+}
+
+.about-expertise {
+  margin-top: 44px;
+}
+
+.about-sublabel {
+  margin: 0;
+  font-family: var(--rg-font-ui);
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rg-gold-light);
+}
+
+.about-list {
+  list-style: none;
+  margin: 22px 0 0;
+  padding: 0;
+}
+
+.about-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 17px;
+  margin-bottom: 17px;
+  border-bottom: 1px solid var(--rg-border);
+}
+
+/* last row keeps its rule but no trailing gap */
+.about-row:last-child {
+  margin-bottom: 0;
+}
+
+.about-row-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--rg-gold-light);
+}
+
+.about-row-label {
+  font-family: var(--rg-font-ui);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rg-text);
+}
+
+/* ── Responsive: stack columns on tablet / mobile ───────── */
+
+@media (max-width: 900px) {
+  .about {
+    padding-top: 88px;
+    padding-bottom: 88px;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    row-gap: 48px;
+  }
+
+  /* center the lockup, left-align the copy block */
+  .about-content {
+    max-width: 580px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-wordmark {
+    font-size: 32px;
+  }
+
+  .about-body {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .about-logo {
+    width: 104px;
+  }
+
+  .about-wordmark {
+    font-size: 26px;
+    letter-spacing: 0.2em;
+  }
+
+  .about-label {
+    font-size: 14px;
+  }
+
+  .about-body {
+    font-size: 15px;
+    line-height: 1.75;
+    margin-top: 20px;
+  }
+
+  .about-sublabel {
+    font-size: 14px;
+  }
+
+  .about-expertise {
+    margin-top: 36px;
+  }
+
+  .about-row-label {
+    font-size: 13px;
+  }
+}

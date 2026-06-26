@@ -1,0 +1,220 @@
+/* ════════════════════════════════════════════════════════════════
+   INDUSTRY ENDORSEMENTS — infinite looping testimonial marquee.
+   Transparent section; tokens only (see src/styles/tokens.css).
+
+   Seamless loop: the card list is rendered twice inside .testi-track.
+   Every card carries an equal right margin, so the two sets are pixel-
+   identical and translating the track by exactly one set (50%) loops
+   with no jump. Direction = left → right (track travels toward 0).
+   ════════════════════════════════════════════════════════════════ */
+
+.testi {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  /* full-bleed marquee: no horizontal padding on the section itself */
+  padding-top: clamp(64px, 10vw, 112px);
+  padding-bottom: clamp(64px, 10vw, 112px);
+  /* background stays transparent — page bg shows through */
+}
+
+/* ── Header ─────────────────────────────────────────────────────── */
+/* .rg-section supplies the max-width + horizontal gutters + centering */
+.testi-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  margin-bottom: clamp(48px, 7vw, 88px);
+}
+
+/* Match the design: the heading reads in gold rather than cream */
+.testi-title {
+  margin: 0;
+  color: var(--rg-gold);
+}
+
+/* ── Marquee viewport ───────────────────────────────────────────── */
+.testi-marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  /* Elegant edge fades — cards dissolve into the page at both edges.
+     Uses the page background (transparent here) so the mask reveals it. */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 9%,
+    #000 91%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 9%,
+    #000 91%,
+    transparent 100%
+  );
+}
+
+/* ── Track (the moving rail) ────────────────────────────────────── */
+.testi-track {
+  display: flex;
+  width: max-content;
+  /* cards equal-height across the row */
+  align-items: stretch;
+  animation: testi-scroll var(--testi-duration, 55s) linear infinite;
+  will-change: transform;
+}
+
+/* display: contents → the cards become direct flex items of the track,
+   so the equal per-card margin (not flex gap) drives the loop math. */
+.testi-set {
+  display: contents;
+}
+
+/* Pause the loop while the visitor is reading */
+.testi-marquee:hover .testi-track {
+  animation-play-state: paused;
+}
+
+@keyframes testi-scroll {
+  /* start showing the duplicate set, glide right onto the primary set */
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* ── Card ───────────────────────────────────────────────────────── */
+.testi-card {
+  flex: 0 0 auto;
+  width: 520px;
+  margin-right: 24px; /* equal spacing → seamless wrap (see header note) */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding: 48px 48px 44px;
+  background-color: var(--rg-surface-2);
+  border: 1px solid var(--rg-border-strong);
+  transition:
+    border-color 0.45s var(--rg-ease),
+    background-color 0.45s var(--rg-ease),
+    box-shadow 0.45s var(--rg-ease);
+}
+
+.testi-card:hover {
+  border-color: var(--rg-border-strong);
+  background-color: var(--rg-surface);
+  box-shadow: 0 24px 60px -34px rgba(216, 160, 122, 0.4);
+}
+
+/* Decorative quote glyph */
+.testi-quote-mark {
+  display: block;
+  width: 40px;
+  height: auto;
+  color: var(--rg-gold);
+  opacity: 0.9;
+}
+
+/* The quote itself */
+.testi-quote {
+  margin: 0;
+  font-family: var(--rg-font-body);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.625;
+  color: var(--rg-text-body);
+}
+
+/* ── Footer (name + role) ───────────────────────────────────────── */
+.testi-foot {
+  margin-top: auto; /* pin to the bottom when cards stretch to equal height */
+  padding-top: 28px;
+  border-top: 1px solid var(--rg-border);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.testi-name {
+  margin: 0;
+  font-family: var(--rg-font-ui);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rg-cream);
+}
+
+.testi-role {
+  margin: 0;
+  font-family: var(--rg-font-ui);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--rg-text-muted);
+}
+
+/* ── Responsive ─────────────────────────────────────────────────── */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .testi-card {
+    width: 420px;
+    margin-right: 20px;
+    padding: 40px 36px 36px;
+    gap: 24px;
+  }
+  .testi-quote {
+    font-size: 17px;
+  }
+  .testi-quote-mark {
+    width: 36px;
+  }
+}
+
+/* Mobile — one card fills most of the viewport */
+@media (max-width: 480px) {
+  .testi-card {
+    width: min(360px, 84vw);
+    margin-right: 16px;
+    padding: 34px 28px 32px;
+  }
+  .testi-quote {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+}
+
+/* ── Reduced motion ─────────────────────────────────────────────── */
+/* Disable the auto-scroll; show a single set the visitor can swipe. */
+@media (prefers-reduced-motion: reduce) {
+  .testi-track {
+    animation: none;
+    transform: none;
+    /* leading/trailing breathing room at the scroll extents */
+    padding-inline: var(--rg-gutter);
+  }
+  /* the fixed-width viewport becomes the horizontal scroller */
+  .testi-marquee {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .testi-set[aria-hidden='true'] {
+    display: none; /* drop the visual duplicate */
+  }
+  .testi-card {
+    scroll-snap-align: center;
+  }
+}

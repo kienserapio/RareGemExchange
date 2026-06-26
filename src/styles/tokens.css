@@ -1,0 +1,132 @@
+/* ════════════════════════════════════════════════════════════════
+   Rare Gem Exchange — Design System Tokens
+   Shared variables, typography helpers, and scroll-reveal animation.
+   ════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Brand / accent ──────────────────────────────── */
+  --rg-gold: #d8a07a;          /* logo wordmark, primary accent */
+  --rg-gold-light: #f6b99a;    /* section labels, nav, buttons, borders */
+  --rg-gold-deep: #4c2711;     /* text on gold-filled surfaces */
+
+  /* ── Neutrals / text ─────────────────────────────── */
+  --rg-cream: #f2eee9;         /* brightest text */
+  --rg-text: #e4e2e1;          /* primary body / strong labels */
+  --rg-text-body: #d6d3d1;     /* default body copy */
+  --rg-text-muted: #a8a29e;    /* supporting copy */
+  --rg-text-dim: #8f8a85;      /* footer / fine print */
+  --rg-nav: #d6c3ba;           /* nav link rest state */
+
+  /* ── Surfaces ────────────────────────────────────── */
+  --rg-bg: #080808;
+  --rg-surface: rgba(255, 255, 255, 0.02);
+  --rg-surface-2: rgba(246, 185, 154, 0.04);
+
+  /* ── Lines / borders ─────────────────────────────── */
+  --rg-border: rgba(246, 185, 154, 0.1);
+  --rg-border-strong: rgba(246, 185, 154, 0.2);
+  --rg-hairline: rgba(255, 255, 255, 0.06);
+
+  /* ── Typography ──────────────────────────────────── */
+  --rg-font-serif: 'Cinzel', serif;
+  --rg-font-body: 'Montserrat', sans-serif;
+  --rg-font-ui: 'Plus Jakarta Sans', sans-serif;
+
+  /* ── Layout ──────────────────────────────────────── */
+  --rg-maxw: 1280px;
+  --rg-gutter: 64px;
+
+  /* ── Motion ──────────────────────────────────────── */
+  --rg-ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── Shared section primitives ─────────────────────────── */
+
+.rg-section {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--rg-maxw);
+  margin: 0 auto;
+  padding-left: var(--rg-gutter);
+  padding-right: var(--rg-gutter);
+}
+
+/* eyebrow / kicker label above big headings */
+.rg-eyebrow {
+  font-family: var(--rg-font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--rg-gold-light);
+}
+
+/* large serif section heading (e.g. OUR STANDARDS) */
+.rg-heading {
+  font-family: var(--rg-font-serif);
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 1.2;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rg-cream);
+  text-shadow: 0 0 30px rgba(216, 160, 122, 0.15);
+}
+
+/* small serif label (e.g. THE ARCHITECTS OF RARITY) */
+.rg-label {
+  font-family: var(--rg-font-serif);
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rg-gold-light);
+}
+
+/* ── Scroll-reveal animation (load + on-scroll) ────────── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(42px);
+  transition:
+    opacity 0.9s var(--rg-ease),
+    transform 0.9s var(--rg-ease);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ── Responsive gutters ────────────────────────────────── */
+
+@media (max-width: 768px) {
+  :root {
+    --rg-gutter: 24px;
+  }
+  .rg-heading {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --rg-gutter: 16px;
+  }
+  .rg-heading {
+    font-size: 26px;
+  }
+  .rg-label {
+    font-size: 14px;
+  }
+}

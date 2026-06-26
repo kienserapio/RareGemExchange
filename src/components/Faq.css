@@ -1,0 +1,214 @@
+/* ════════════════════════════════════════════════════════════════
+   FAQ — accordion with smooth grid-rows height animation.
+   Transparent section; all color/type from design tokens.
+   ════════════════════════════════════════════════════════════════ */
+
+.faq {
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
+/* ── Heading block ─────────────────────────────────────── */
+
+.faq-header {
+  max-width: 720px;
+  margin: 0 auto 56px;
+  text-align: center;
+}
+
+.faq-eyebrow {
+  display: block;
+  margin-bottom: 18px;
+}
+
+.faq-heading {
+  margin: 0;
+}
+
+/* ── Accordion list ────────────────────────────────────── */
+
+.faq-list {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--rg-border);
+}
+
+.faq-item:last-child {
+  border-bottom: none;
+}
+
+/* h3 wrapper — strip default heading margins/weight */
+.faq-q-heading {
+  margin: 0;
+  font: inherit;
+}
+
+/* Question trigger — full-width button, text left / icon right */
+.faq-question {
+  -webkit-appearance: none;
+  appearance: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  width: 100%;
+  margin: 0;
+  padding: 26px 0;
+  background: none;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+  color: var(--rg-cream);
+}
+
+.faq-q-text {
+  font-family: var(--rg-font-ui);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: inherit;
+  transition: color 0.3s var(--rg-ease);
+}
+
+.faq-question:hover .faq-q-text,
+.faq-item.is-open .faq-q-text {
+  color: var(--rg-gold-light);
+}
+
+/* Focus ring — keyboard only */
+.faq-question:focus-visible {
+  outline: 2px solid var(--rg-gold-light);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* ── Plus / × icon ─────────────────────────────────────── */
+
+.faq-icon-wrap {
+  flex-shrink: 0;
+  display: inline-flex;
+  color: var(--rg-text-muted);
+  transition:
+    transform 0.4s var(--rg-ease),
+    color 0.3s var(--rg-ease);
+}
+
+.faq-icon {
+  display: block;
+}
+
+.faq-question:hover .faq-icon-wrap {
+  color: var(--rg-gold-light);
+}
+
+/* + rotates into a × and turns gold when open */
+.faq-item.is-open .faq-icon-wrap {
+  transform: rotate(45deg);
+  color: var(--rg-gold-light);
+}
+
+/* ── Answer panel — grid-rows auto-height animation ────── */
+
+.faq-answer-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s var(--rg-ease);
+}
+
+.faq-item.is-open .faq-answer-wrap {
+  grid-template-rows: 1fr;
+}
+
+/* required inner clip so the row can collapse to 0 */
+.faq-answer-inner {
+  overflow: hidden;
+}
+
+.faq-answer {
+  max-width: 700px;
+  margin: 0;
+  padding-bottom: 30px;
+  font-family: var(--rg-font-body);
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--rg-text-muted);
+  /* subtle fade + lift, slightly delayed behind the height open */
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.4s var(--rg-ease) 0.05s,
+    transform 0.4s var(--rg-ease) 0.05s;
+}
+
+.faq-item.is-open .faq-answer {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Responsive ────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .faq {
+    padding-top: 84px;
+    padding-bottom: 84px;
+  }
+  .faq-header {
+    margin-bottom: 40px;
+  }
+  .faq-question {
+    padding: 22px 0;
+    gap: 18px;
+  }
+  .faq-q-text {
+    font-size: 15px;
+  }
+  .faq-answer {
+    font-size: 14px;
+    padding-bottom: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .faq {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+  .faq-header {
+    margin-bottom: 30px;
+  }
+  .faq-eyebrow {
+    margin-bottom: 14px;
+  }
+  .faq-question {
+    padding: 18px 0;
+    gap: 14px;
+  }
+  .faq-q-text {
+    font-size: 13.5px;
+    letter-spacing: 0.1em;
+  }
+  .faq-answer {
+    font-size: 13.5px;
+    line-height: 1.7;
+    padding-bottom: 22px;
+  }
+  .faq-icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Respect reduced-motion — collapse all accordion transitions */
+@media (prefers-reduced-motion: reduce) {
+  .faq-answer-wrap,
+  .faq-answer,
+  .faq-icon-wrap,
+  .faq-q-text {
+    transition: none;
+  }
+}
