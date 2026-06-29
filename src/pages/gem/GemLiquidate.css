@@ -1,0 +1,86 @@
+.gem-liq {
+  position: relative;
+  overflow: hidden;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Content ─────────────────────────────────────────────────────── */
+
+.gem-liq-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  padding: 96px 48px 200px;
+  max-width: 560px;
+}
+
+.gem-liq-eyebrow {
+  margin: 0;
+  font-family: var(--rg-font-ui);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rg-gold-light);
+}
+
+.gem-liq-title {
+  margin: 0;
+  font-family: var(--rg-font-serif);
+  font-weight: 400;
+  font-size: clamp(36px, 4.5vw, 56px);
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--rg-cream);
+}
+
+.gem-liq-body {
+  margin: 0;
+  font-family: var(--rg-font-ui);
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--rg-text-body);
+  max-width: 42ch;
+}
+
+.gem-liq-btn {
+  margin-top: 4px;
+  padding: 16px 40px;
+  font-family: var(--rg-font-ui);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #131313;
+  background: var(--rg-cream);
+  border: none;
+  cursor: pointer;
+  transition:
+    background-color 0.3s var(--rg-ease),
+    box-shadow 0.3s var(--rg-ease);
+}
+
+.gem-liq-btn:hover {
+  background: #ffffff;
+  box-shadow: 0 12px 40px -16px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Responsive ─────────────────────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .gem-liq-content {
+    padding: 72px 24px 180px;
+  }
+
+  .gem-liq-gem-wrap {
+    width: 200px;
+  }
+}

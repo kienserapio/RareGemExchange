@@ -1,0 +1,275 @@
+/* ════════════════════════════════════════════════════════════════
+   Gem Detail Page — shell + fade transition + light/dark theming.
+   Child component CSS uses --rg-* vars; overrides live here.
+   ════════════════════════════════════════════════════════════════ */
+
+.gem-detail {
+  padding-top: 112px;
+  padding-bottom: 0;
+  transition: opacity 0.22s ease, background-color 0.4s ease;
+  min-height: calc(100vh - 80px);
+}
+
+.gem-detail--fading {
+  opacity: 0;
+}
+
+.gem-detail-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.gem-detail-inner > .gem-bc {
+  margin-bottom: 32px;
+}
+
+/* ── Theme toggle button ────────────────────────────────────────── */
+
+.gem-theme-toggle {
+  position: fixed;
+  top: 112px;
+  right: 28px;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  font-family: var(--rg-font-ui);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  border-radius: 0;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.gem-theme-toggle--dark {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(214, 195, 186, 0.8);
+  border: 1px solid rgba(246, 185, 154, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.gem-theme-toggle--dark:hover {
+  background: rgba(255, 255, 255, 0.13);
+  color: var(--rg-gold-light);
+  border-color: rgba(246, 185, 154, 0.35);
+}
+
+.gem-theme-toggle--light {
+  background: rgba(19, 19, 19, 0.08);
+  color: #3a3530;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.gem-theme-toggle--light:hover {
+  background: rgba(19, 19, 19, 0.14);
+  color: #131313;
+}
+
+.gem-theme-toggle-label {
+  line-height: 1;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   LIGHT MODE — overrides cascade into all child components.
+   Anything hardcoded as a dark surface needs a selector override.
+   ════════════════════════════════════════════════════════════════ */
+
+.gem-detail--light {
+  background: #f4f1ed;
+
+  /* Override --rg-* tokens so child components flip automatically */
+  --rg-bg: #f4f1ed;
+  --rg-surface: rgba(0, 0, 0, 0.02);
+  --rg-surface-2: rgba(0, 0, 0, 0.03);
+  --rg-text: #131313;
+  --rg-text-body: #3a3530;
+  --rg-text-muted: #6b5f58;
+  --rg-text-dim: #9a8c85;
+  --rg-cream: #131313;
+  --rg-nav: #3a3530;
+  --rg-gold: #b87a52;
+  --rg-gold-light: #c58e71;
+  --rg-gold-deep: #ffffff;
+  --rg-border: rgba(0, 0, 0, 0.08);
+  --rg-border-strong: rgba(0, 0, 0, 0.14);
+  --rg-hairline: rgba(0, 0, 0, 0.05);
+}
+
+/* ── Breadcrumb ─────────────────────────────────────────────────── */
+
+.gem-detail--light .gem-bc-link { color: #5a4f48; }
+.gem-detail--light .gem-bc-sep  { color: rgba(90, 79, 72, 0.35); }
+.gem-detail--light .gem-bc-current { color: #c58e71; }
+
+/* ── Hero ───────────────────────────────────────────────────────── */
+
+.gem-detail--light .gem-hero-main-wrap  { background: #e8e4df; }
+.gem-detail--light .gem-thumb           { background: #e8e4df; border-color: transparent; }
+.gem-detail--light .gem-thumb--active   { border-color: #c58e71; }
+.gem-detail--light .gem-hero-title      { color: #131313; }
+.gem-detail--light .gem-hero-sku        { color: rgba(58, 53, 48, 0.5); }
+.gem-detail--light .gem-hero-price      { color: #131313; }
+.gem-detail--light .gem-hero-price-note { color: rgba(58, 53, 48, 0.45); }
+.gem-detail--light .gem-hero-desc       { color: #3a3530; }
+
+.gem-detail--light .gem-btn--primary {
+  background: #131313;
+  color: #ffffff;
+}
+.gem-detail--light .gem-btn--primary:hover {
+  background: #2a2520;
+  box-shadow: 0 12px 40px -16px rgba(0, 0, 0, 0.35);
+}
+.gem-detail--light .gem-btn--secondary {
+  border-color: rgba(0, 0, 0, 0.18);
+  color: #131313;
+}
+.gem-detail--light .gem-btn--secondary:hover {
+  border-color: #c58e71;
+  color: #c58e71;
+}
+.gem-detail--light .gem-text-link {
+  color: rgba(58, 53, 48, 0.55);
+}
+.gem-detail--light .gem-text-link:hover { color: #c58e71; }
+
+.gem-detail--light .gem-hero-shipping {
+  background: rgba(0, 0, 0, 0.025);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #6b5f58;
+}
+.gem-detail--light .gem-hero-shipping-label { color: #c58e71; }
+.gem-detail--light .gem-hero-shipping-date  { color: rgba(58, 53, 48, 0.5); }
+
+/* ── Specs ──────────────────────────────────────────────────────── */
+
+.gem-detail--light .gem-specs              { border-color: rgba(0, 0, 0, 0.07); }
+.gem-detail--light .gem-specs-col          { border-color: rgba(0, 0, 0, 0.07); }
+.gem-detail--light .gem-specs-col-title    { color: #9a8c85; }
+.gem-detail--light .gem-specs-row          { border-color: rgba(0, 0, 0, 0.06); }
+.gem-detail--light .gem-specs-label        { color: rgba(58, 53, 48, 0.5); }
+.gem-detail--light .gem-specs-value        { color: #131313; }
+
+/* ── Includes ───────────────────────────────────────────────────── */
+
+.gem-detail--light .gem-includes-card-visual {
+  background: #e4e0db;
+  border-color: rgba(0, 0, 0, 0.06);
+}
+.gem-detail--light .gem-includes-card-visual::before {
+  background: radial-gradient(ellipse at 50% 60%, rgba(197, 142, 113, 0.08), transparent 70%);
+}
+.gem-detail--light .gem-includes-title { color: #c58e71; }
+.gem-detail--light .gem-includes-body  { color: #6b5f58; }
+
+/* ── Compare ────────────────────────────────────────────────────── */
+
+.gem-detail--light .gem-compare              { border-color: rgba(0, 0, 0, 0.07); }
+.gem-detail--light .gem-compare-title        { color: #131313; }
+.gem-detail--light .gem-compare-desc         { color: #6b5f58; }
+.gem-detail--light .gem-compare-table        { background: rgba(0, 0, 0, 0.07); }
+.gem-detail--light .gem-compare-col          { background: #ece8e3; }
+.gem-detail--light .gem-compare-col--current { background: #1a2b28; }
+.gem-detail--light .gem-compare-col-badge    { border-color: rgba(0, 0, 0, 0.05); color: #5a4f48; }
+.gem-detail--light .gem-compare-col--current .gem-compare-col-badge {
+  color: var(--rg-gold-light);
+  background: rgba(197, 142, 113, 0.12);
+  border-color: transparent;
+}
+.gem-detail--light .gem-compare-row          { border-color: rgba(0, 0, 0, 0.05); }
+.gem-detail--light .gem-compare-col--current .gem-compare-row { border-color: rgba(255,255,255,0.06); }
+.gem-detail--light .gem-compare-row-label    { color: rgba(58, 53, 48, 0.45); }
+.gem-detail--light .gem-compare-col--current .gem-compare-row-label { color: rgba(214,195,186,0.5); }
+.gem-detail--light .gem-compare-row-val      { color: #131313; }
+.gem-detail--light .gem-compare-col--current .gem-compare-row-val { color: #e4e2e1; }
+.gem-detail--light .gem-compare-diff         { color: #c58e71; }
+.gem-detail--light .gem-compare-view-btn {
+  color: #c58e71;
+  border-color: rgba(197, 142, 113, 0.3);
+}
+.gem-detail--light .gem-compare-view-btn:hover {
+  background: rgba(197, 142, 113, 0.08);
+  border-color: #c58e71;
+}
+
+/* ── Similar gems ───────────────────────────────────────────────── */
+
+.gem-detail--light .gem-similar              { border-color: rgba(0, 0, 0, 0.07); }
+.gem-detail--light .gem-similar-title        { color: #131313; }
+.gem-detail--light .gem-similar-eyebrow      { color: #9a8c85; }
+.gem-detail--light .gem-similar-nav-btn {
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #6b5f58;
+}
+.gem-detail--light .gem-similar-nav-btn:hover {
+  border-color: #c58e71;
+  color: #c58e71;
+}
+.gem-detail--light .gem-similar-card         { background: #ece8e3; border-color: rgba(0, 0, 0, 0.06); }
+.gem-detail--light .gem-similar-card:hover   { border-color: #c58e71; }
+.gem-detail--light .gem-similar-cat          { color: #9a8c85; }
+.gem-detail--light .gem-similar-name         { color: #131313; }
+.gem-detail--light .gem-similar-cut          { color: #6b5f58; }
+.gem-detail--light .gem-similar-footer       { border-color: rgba(0, 0, 0, 0.06); }
+.gem-detail--light .gem-similar-clarity      { color: #9a8c85; }
+
+/* ── Liquidate CTA ──────────────────────────────────────────────── */
+
+.gem-detail--light .gem-liq-title { color: #131313; }
+.gem-detail--light .gem-liq-body  { color: #6b5f58; }
+.gem-detail--light .gem-liq-btn {
+  color: #ffffff;
+  background: #131313;
+}
+.gem-detail--light .gem-liq-btn:hover {
+  background: #2a2520;
+}
+
+/* ── Not-found fallback ─────────────────────────────────────────── */
+
+.gem-not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 24px;
+}
+
+.gem-not-found-title {
+  font-family: var(--rg-font-serif);
+  font-size: 32px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rg-text-muted);
+}
+
+.gem-not-found-link {
+  font-family: var(--rg-font-ui);
+  font-size: 13px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--rg-gold-light);
+  text-decoration: none;
+  transition: color 0.3s var(--rg-ease);
+}
+
+.gem-not-found-link:hover { color: var(--rg-cream); }
+
+/* ── Responsive ─────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .gem-theme-toggle {
+    top: 96px;
+    right: 16px;
+  }
+}

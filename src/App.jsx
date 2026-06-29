@@ -1,16 +1,11 @@
+import { Routes, Route } from 'react-router-dom'
 import './App.css'
 import Header from './components/Header'
-import Hero from './components/Hero'
-import Gallery from './components/Gallery'
-import Certifications from './components/Certifications'
-import About from './components/About'
-import Standards from './components/Standards'
-import Founder from './components/Founder'
-import Testimonials from './components/Testimonials'
-import Faq from './components/Faq'
-import ComingSoon from './components/ComingSoon'
 import Footer from './components/Footer'
 import Chatbot from './components/chatbot/Chatbot'
+import HomePage from './pages/home/HomePage'
+import CollectionPage from './pages/collection/CollectionPage'
+import GemDetailPage from './pages/gem/GemDetailPage'
 
 function App() {
   return (
@@ -20,15 +15,11 @@ function App() {
       <Header />
 
       <main className="page-main">
-        <Hero />
-        <Certifications />
-        <About />
-        <Standards />
-        <Founder />
-        <Testimonials />
-        <Gallery />
-        <Faq />
-        <ComingSoon />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/gems" element={<CollectionPage />} />
+          <Route path="/gems/:id" element={<GemDetailPage />} />
+        </Routes>
       </main>
 
       <Footer />

@@ -1,0 +1,35 @@
+.gem-bc {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.gem-bc-link {
+  font-family: var(--rg-font-ui);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rg-nav);
+  text-decoration: none;
+  transition: color 0.3s var(--rg-ease);
+}
+
+.gem-bc-link:hover {
+  color: var(--rg-gold-light);
+}
+
+.gem-bc-sep {
+  font-family: var(--rg-font-ui);
+  font-size: 10px;
+  color: rgba(246, 185, 154, 0.35);
+}
+
+.gem-bc-current {
+  font-family: var(--rg-font-ui);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rg-gold-light);
+}
