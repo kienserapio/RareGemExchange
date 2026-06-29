@@ -85,7 +85,7 @@ export default function Testimonials() {
     <section id="endorsements" className="testi">
       {/* Centered header: kicker + large serif heading */}
       <Reveal className="testi-header rg-section">
-        <p className="rg-eyebrow">VOICES OF AUTHORITY</p>
+        <p className="rg-eyebrow">READ FROM OUR CLIENTS</p>
         <h2 className="rg-heading testi-title">INDUSTRY ENDORSEMENTS</h2>
       </Reveal>
 

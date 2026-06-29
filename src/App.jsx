@@ -21,12 +21,12 @@ function App() {
 
       <main className="page-main">
         <Hero />
-        <Gallery />
         <Certifications />
         <About />
         <Standards />
         <Founder />
         <Testimonials />
+        <Gallery />
         <Faq />
         <ComingSoon />
       </main>

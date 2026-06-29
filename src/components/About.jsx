@@ -68,7 +68,7 @@ const SealIcon = () => (
 const EXPERTISE = [
   { Icon: StrategyIcon, label: 'INVESTMENT STRATEGY' },
   { Icon: GlobeIcon, label: 'GLOBAL SOURCING' },
-  { Icon: SealIcon, label: 'GEMOLOGICAL INTEGRITY' },
+  { Icon: SealIcon, label: 'GUARANTEED QUALITY' },
 ]
 
 export default function About() {
@@ -95,14 +95,15 @@ export default function About() {
         {/* ── RIGHT: copy + expertise ────────────────────── */}
         <div className="about-content">
           <Reveal as="p" className="about-label" delay={0.1}>
-            The Architects of Rarity
+            ABOUT US
           </Reveal>
 
           <Reveal as="p" className="about-body" delay={0.2}>
-            Rare Gem Exchange is a premier digital vault and advisory firm
-            dedicated to the world's most exceptional colored gemstones. Our
-            mission is to provide global investors and collectors with
-            unparalleled access to investment-grade assets.
+            Rare Gem Exchange is a premier destination for the world's most
+            beautiful gemstones. We provide collectors and enthusiasts with
+            direct access to rare stones, ensuring quality and transparency in
+            every transaction. Our mission is simple: to bring the finest gems
+            to those who appreciate true rarity.
           </Reveal>
 
           <Reveal className="about-expertise" delay={0.3}>
