@@ -1,0 +1,118 @@
+.sov-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8, 8, 8, 0.86);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: sov-in 0.35s var(--rg-ease) both;
+}
+
+.sov-backdrop--out {
+  animation: sov-out 0.55s var(--rg-ease) forwards;
+}
+
+@keyframes sov-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes sov-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+.sov-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 56px 48px;
+  text-align: center;
+}
+
+/* ── Check icon ─────────────────────────────────────────── */
+
+.sov-icon {
+  width: 84px;
+  height: 84px;
+}
+
+.sov-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.sov-circle {
+  fill: none;
+  stroke: var(--rg-gold);
+  stroke-width: 1.5;
+  stroke-dasharray: 151;
+  stroke-dashoffset: 151;
+  animation: sov-circle 0.65s cubic-bezier(0.65, 0, 0.35, 1) 0.15s forwards;
+}
+
+.sov-tick {
+  fill: none;
+  stroke: var(--rg-gold);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 38;
+  stroke-dashoffset: 38;
+  animation: sov-tick 0.4s cubic-bezier(0.65, 0, 0.35, 1) 0.72s forwards;
+}
+
+@keyframes sov-circle {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes sov-tick {
+  to { stroke-dashoffset: 0; }
+}
+
+/* ── Text ───────────────────────────────────────────────── */
+
+.sov-title {
+  margin: 0;
+  font-family: var(--rg-font-serif);
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rg-cream);
+  opacity: 0;
+  animation: sov-text 0.4s var(--rg-ease) 1s forwards;
+}
+
+.sov-sub {
+  margin: 0;
+  font-family: var(--rg-font-ui);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--rg-text-muted);
+  max-width: 32ch;
+  opacity: 0;
+  animation: sov-text 0.4s var(--rg-ease) 1.2s forwards;
+}
+
+@keyframes sov-text {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sov-backdrop,
+  .sov-circle,
+  .sov-tick,
+  .sov-title,
+  .sov-sub {
+    animation: none;
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}

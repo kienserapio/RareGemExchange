@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import Reveal from './Reveal'
+import SuccessOverlay from './SuccessOverlay'
+import { apiUrl } from '../config'
 import './ComingSoon.css'
 
-/* ── Decorative gem glyph (top accent) ─────────────────── */
 const GemGlyph = () => (
   <svg
     className="cs-glyph"
@@ -22,7 +23,6 @@ const GemGlyph = () => (
   </svg>
 )
 
-/* ── Social icons ──────────────────────────────────────── */
 const InstagramIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" strokeWidth="1.5" />
@@ -48,13 +48,45 @@ const EmailIcon = () => (
   </svg>
 )
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
 export default function ComingSoon() {
   const [email, setEmail] = useState('')
-  const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [showSuccess, setShowSuccess] = useState(false)
+  const [done, setDone] = useState(false)
+  const [error, setError] = useState('')
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    if (email) setSubmitted(true)
+    const trimmed = email.trim()
+    if (!EMAIL_RE.test(trimmed)) {
+      setError('Please enter a valid email address.')
+      return
+    }
+    setError('')
+    setSubmitting(true)
+    try {
+      const res = await fetch(apiUrl('/api/waitlist'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: trimmed }),
+      })
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}))
+        throw new Error(data.error || 'Something went wrong. Please try again.')
+      }
+      setShowSuccess(true)
+    } catch (err) {
+      setError(err.message || 'Something went wrong. Please try again.')
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  const handleSuccessDone = () => {
+    setShowSuccess(false)
+    setDone(true)
   }
 
   return (
@@ -79,7 +111,7 @@ export default function ComingSoon() {
       </Reveal>
 
       <Reveal className="cs-form-wrap" delay={0.26}>
-        {submitted ? (
+        {done ? (
           <p className="cs-success">Thank you &mdash; we&rsquo;ll be in touch.</p>
         ) : (
           <form className="cs-form" onSubmit={handleSubmit}>
@@ -91,12 +123,14 @@ export default function ComingSoon() {
               onChange={(e) => setEmail(e.target.value)}
               aria-label="Email address"
               required
+              disabled={submitting}
             />
-            <button type="submit" className="cs-btn">
-              NOTIFY ME
+            <button type="submit" className="cs-btn" disabled={submitting}>
+              {submitting ? 'SAVING…' : 'NOTIFY ME'}
             </button>
           </form>
         )}
+        {error && !done && <p className="cs-error" role="alert">{error}</p>}
       </Reveal>
 
       <Reveal className="cs-socials" delay={0.34}>
@@ -110,6 +144,14 @@ export default function ComingSoon() {
           <EmailIcon />
         </a>
       </Reveal>
+
+      {showSuccess && (
+        <SuccessOverlay
+          title="Thank You for Joining"
+          subtitle="We'll be in touch when we launch. Keep an eye on your inbox."
+          onDone={handleSuccessDone}
+        />
+      )}
     </section>
   )
 }

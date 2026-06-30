@@ -1,11 +1,12 @@
+import { Link } from 'react-router-dom'
 import Reveal from './Reveal'
 import './Hero.css'
 
-/**
- * Hero — the opening brand lockup. Uses the shared Reveal wrapper so the
- * elements slide up on first paint (and on scroll-back-into-view).
- */
 export default function Hero() {
+  const handleInquirePrivately = () => {
+    window.dispatchEvent(new CustomEvent('rge:open-intake'))
+  }
+
   return (
     <section id="top" className="hero rg-section">
       <Reveal delay={0.05}>
@@ -31,12 +32,16 @@ export default function Hero() {
       </Reveal>
 
       <Reveal className="hero-cta" delay={0.55}>
-        <a href="#our-gems" className="hero-cta-primary">
+        <Link to="/gems" className="hero-cta-primary">
           Explore the Collection
-        </a>
-        <a href="#coming-soon" className="hero-cta-secondary">
+        </Link>
+        <button
+          type="button"
+          className="hero-cta-secondary"
+          onClick={handleInquirePrivately}
+        >
           Inquire Privately
-        </a>
+        </button>
       </Reveal>
     </section>
   )

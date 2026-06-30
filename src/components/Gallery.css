@@ -12,15 +12,51 @@
 
 .gallery-header {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  text-align: center;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  text-align: left;
   margin-bottom: clamp(40px, 6vw, 64px);
+}
+
+.gallery-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .gallery-title {
   margin: 0;
+}
+
+.gallery-cta {
+  flex-shrink: 0;
+  display: inline-block;
+  padding: 14px 32px;
+  font-family: var(--rg-font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--rg-gold-light);
+  border: 1px solid var(--rg-gold-light);
+  transition:
+    background-color 0.3s var(--rg-ease),
+    color 0.3s var(--rg-ease);
+}
+
+.gallery-cta:hover {
+  background: var(--rg-gold-light);
+  color: var(--rg-gold-deep);
+}
+
+@media (max-width: 600px) {
+  .gallery-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 /* ── Grid ───────────────────────────────────────────────────────── */

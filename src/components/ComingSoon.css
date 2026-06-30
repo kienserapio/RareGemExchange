@@ -162,6 +162,15 @@
   color: var(--rg-gold-light);
 }
 
+.cs-error {
+  margin: 14px 0 0;
+  font-family: var(--rg-font-ui);
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: #e57373;
+}
+
 /* ── Social icons ───────────────────────────────────────── */
 .cs-socials {
   display: flex;

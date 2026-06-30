@@ -1,6 +1,6 @@
 import './GemLiquidate.css'
 
-export default function GemLiquidate({ gem }) {
+export default function GemLiquidate() {
   return (
     <div className="gem-liq">
       {/* Centered content */}

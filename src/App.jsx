@@ -6,6 +6,7 @@ import Chatbot from './components/chatbot/Chatbot'
 import HomePage from './pages/home/HomePage'
 import CollectionPage from './pages/collection/CollectionPage'
 import GemDetailPage from './pages/gem/GemDetailPage'
+import TeamPage from './pages/team/TeamPage'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/gems" element={<CollectionPage />} />
           <Route path="/gems/:id" element={<GemDetailPage />} />
+          <Route path="/team" element={<TeamPage />} />
         </Routes>
       </main>
 

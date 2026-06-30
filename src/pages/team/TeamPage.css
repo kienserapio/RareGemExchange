@@ -1,0 +1,209 @@
+.team-page {
+  padding-top: clamp(72px, 10vw, 120px);
+  padding-bottom: clamp(64px, 10vw, 112px);
+}
+
+/* ── Page header ────────────────────────────────────────────── */
+
+.team-page-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  margin-bottom: clamp(48px, 7vw, 72px);
+}
+
+.team-page-title {
+  margin: 0;
+}
+
+.team-page-sub {
+  margin: 0;
+  max-width: 52ch;
+  font-family: var(--rg-font-body);
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--rg-text-muted);
+}
+
+/* ── Team list ──────────────────────────────────────────────── */
+
+.team-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(56px, 8vw, 88px);
+}
+
+/* Hairline divider between consecutive members */
+.team-list > .team-card + .team-card {
+  padding-top: clamp(56px, 8vw, 88px);
+  border-top: 1px solid var(--rg-border);
+}
+
+/* ── Team card ──────────────────────────────────────────────── */
+
+.team-card {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  align-items: center;
+  column-gap: 72px;
+  row-gap: 48px;
+}
+
+/* ── Portrait ───────────────────────────────────────────────── */
+
+.team-portrait-col {
+  display: flex;
+  justify-content: center;
+}
+
+.team-portrait {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 4 / 5;
+  border: 1px solid var(--rg-border-strong);
+  background: var(--rg-surface-2);
+}
+
+.team-portrait::after {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 1px solid var(--rg-border);
+  pointer-events: none;
+}
+
+.team-portrait-plate {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  background:
+    radial-gradient(120% 80% at 50% 30%, rgba(216, 160, 122, 0.08), transparent 60%),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.25));
+}
+
+.team-monogram {
+  font-family: var(--rg-font-serif);
+  font-weight: 600;
+  font-size: 72px;
+  letter-spacing: 0.1em;
+  color: var(--rg-gold);
+  opacity: 0.85;
+  text-shadow: 0 0 40px rgba(216, 160, 122, 0.25);
+}
+
+.team-portrait-label {
+  font-family: var(--rg-font-ui);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--rg-text-dim);
+  text-align: center;
+  padding: 0 16px;
+}
+
+/* ── Content ────────────────────────────────────────────────── */
+
+.team-content {
+  max-width: 600px;
+}
+
+.team-name {
+  margin: 18px 0 0;
+  text-align: left;
+}
+
+.team-bio {
+  margin-top: 32px;
+}
+
+.team-para {
+  margin: 0;
+  font-family: var(--rg-font-body);
+  font-size: 17px;
+  line-height: 1.85;
+  color: var(--rg-text-body);
+}
+
+.team-para + .team-para {
+  margin-top: 22px;
+}
+
+/* ── Sign-off ───────────────────────────────────────────────── */
+
+.team-signoff {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 40px;
+  padding-top: 32px;
+  border-top: 1px solid var(--rg-border);
+}
+
+.team-signature {
+  font-family: 'Great Vibes', cursive;
+  font-size: 52px;
+  line-height: 0.9;
+  color: var(--rg-gold-light);
+  text-shadow: 0 0 30px rgba(216, 160, 122, 0.25);
+}
+
+.team-credit {
+  font-family: var(--rg-font-ui);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--rg-text-muted);
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .team-card {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    row-gap: 48px;
+  }
+
+  .team-content {
+    max-width: 600px;
+    width: 100%;
+  }
+
+  .team-name {
+    text-align: center;
+  }
+
+  .team-content > .rg-eyebrow {
+    display: block;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-portrait {
+    max-width: 100%;
+  }
+
+  .team-monogram {
+    font-size: 56px;
+  }
+
+  .team-para {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .team-signature {
+    font-size: 44px;
+  }
+}

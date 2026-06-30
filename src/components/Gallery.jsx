@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import './Gallery.css'
 import Reveal from './Reveal'
 
@@ -23,8 +24,13 @@ export default function Gallery() {
   return (
     <section id="our-gems" className="gallery rg-section">
       <Reveal className="gallery-header">
-        <p className="rg-eyebrow">OUR COLLECTION</p>
-        <h2 className="rg-heading gallery-title">FEATURED GEMS</h2>
+        <div className="gallery-header-text">
+          <p className="rg-eyebrow">OUR COLLECTION</p>
+          <h2 className="rg-heading gallery-title">FEATURED GEMS</h2>
+        </div>
+        <Link to="/gems" className="gallery-cta">
+          View Full Collection
+        </Link>
       </Reveal>
 
       <div className="gallery-grid">

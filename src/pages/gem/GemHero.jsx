@@ -34,17 +34,19 @@ export default function GemHero({ gem }) {
         </div>
 
         <div className="gem-hero-thumbs">
-          {gem.thumbnails.map((src, i) => (
-            <button
-              key={i}
-              className={`gem-thumb${activeThumb === i ? ' gem-thumb--active' : ''}${!src ? ' gem-thumb--empty' : ''}`}
-              onClick={() => handleThumb(src, i)}
-              aria-label={src ? `View ${i + 1}` : undefined}
-              disabled={!src}
-            >
-              {src && <img src={src} alt="" className="gem-thumb-img" />}
-            </button>
-          ))}
+          {gem.thumbnails.map((src, i) => {
+            const imgSrc = src || gem.img
+            return (
+              <button
+                key={i}
+                className={`gem-thumb${activeThumb === i ? ' gem-thumb--active' : ''}`}
+                onClick={() => handleThumb(imgSrc, i)}
+                aria-label={`View image ${i + 1}`}
+              >
+                <img src={imgSrc} alt="" className="gem-thumb-img" />
+              </button>
+            )
+          })}
         </div>
       </div>
 

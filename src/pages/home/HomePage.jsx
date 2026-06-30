@@ -2,7 +2,6 @@ import Hero from '../../components/Hero'
 import Certifications from '../../components/Certifications'
 import About from '../../components/About'
 import Standards from '../../components/Standards'
-import Founder from '../../components/Founder'
 import Testimonials from '../../components/Testimonials'
 import Gallery from '../../components/Gallery'
 import Faq from '../../components/Faq'
@@ -15,7 +14,6 @@ export default function HomePage() {
       <Certifications />
       <About />
       <Standards />
-      <Founder />
       <Testimonials />
       <Gallery />
       <Faq />
