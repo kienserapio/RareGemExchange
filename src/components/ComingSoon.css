@@ -112,6 +112,12 @@
   border-color: var(--rg-gold);
 }
 
+/* Invalid / failed submit — red stroke on the field (placed after
+   :focus-within so it wins at equal specificity while the error stands). */
+.cs-form--error {
+  border-color: #e57373;
+}
+
 .cs-input {
   flex: 1 1 auto;
   min-width: 0;
@@ -129,6 +135,39 @@
 .cs-input::placeholder {
   color: var(--rg-text-dim);
   opacity: 1;
+}
+
+/* ── Invalid-submit feedback: subtle, decaying horizontal shake ─── */
+@keyframes cs-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  15% {
+    transform: translateX(-5px);
+  }
+  30% {
+    transform: translateX(4px);
+  }
+  45% {
+    transform: translateX(-4px);
+  }
+  60% {
+    transform: translateX(3px);
+  }
+  75% {
+    transform: translateX(-2px);
+  }
+}
+
+.cs-input--shake {
+  animation: cs-shake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cs-input--shake {
+    animation: none;
+  }
 }
 
 .cs-btn {

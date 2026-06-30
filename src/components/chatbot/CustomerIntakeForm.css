@@ -208,10 +208,52 @@
   border-color: var(--rg-gold);
 }
 
+/* Budget cell wraps a live currency-symbol adornment + the numeric input so
+   the symbol can never overlap the value, whatever its length. The cell
+   carries the border/background/focus; the input itself is transparent. */
+.intake-budget-cell {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--rg-border-strong);
+  box-sizing: border-box;
+  transition: border-color 0.2s var(--rg-ease), box-shadow 0.2s var(--rg-ease);
+}
+
+.intake-budget-cell:focus-within {
+  border-color: var(--rg-gold);
+  box-shadow: 0 0 0 1px var(--rg-gold);
+}
+
+.intake-budget-symbol {
+  flex-shrink: 0;
+  padding: 0 4px 0 12px;
+  color: var(--rg-gold-light);
+  font-family: var(--rg-font-ui);
+  font-size: 13px;
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
 .intake-budget-input {
   flex: 1;
   min-width: 0;
+  height: 100%;
+  padding: 0 12px 0 2px;
+  background: transparent;
+  border: none;
+  color: var(--rg-cream);
+  font-family: var(--rg-font-ui);
+  font-size: 14px;
+  box-sizing: border-box;
 }
+
+.intake-budget-input::placeholder { color: var(--rg-text-dim); }
+.intake-budget-input:focus { outline: none; }
 
 .intake-budget-sep {
   font-family: var(--rg-font-ui);
@@ -289,6 +331,37 @@
   color: #e57373;
 }
 
+/* "Provide at least one" hint under the email/WhatsApp pair */
+.intake-hint {
+  margin: 8px 0 0;
+  font-family: var(--rg-font-ui);
+  font-size: 11.5px;
+  letter-spacing: 0.02em;
+  color: var(--rg-text-dim);
+}
+
+/* ── Field-level validation feedback: red highlight + shake ──── */
+.intake-input--error,
+.intake-budget-cell--error {
+  border-color: #e57373;
+  box-shadow: 0 0 0 1px #e57373;
+}
+
+.intake-consent--error .intake-consent-box {
+  border-color: #e57373;
+  box-shadow: 0 0 0 1px #e57373;
+}
+
+.intake-shake {
+  animation: intake-shake 0.4s ease-in-out both;
+}
+
+@keyframes intake-shake {
+  0%, 100% { transform: translateX(0); }
+  15%, 45%, 75% { transform: translateX(-5px); }
+  30%, 60%, 90% { transform: translateX(5px); }
+}
+
 /* Submit button */
 .intake-submit {
   margin-top: 8px;
@@ -334,7 +407,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .intake-backdrop,
-  .intake-modal {
+  .intake-modal,
+  .intake-shake {
     animation: none;
   }
 }

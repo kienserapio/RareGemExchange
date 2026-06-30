@@ -56,15 +56,33 @@ export default function ComingSoon() {
   const [showSuccess, setShowSuccess] = useState(false)
   const [done, setDone] = useState(false)
   const [error, setError] = useState('')
+  const [shake, setShake] = useState(false)
+
+  // Show an error message and (re)start the shake animation on the input.
+  // Toggling shake off first, then back on via requestAnimationFrame, forces
+  // the CSS animation to restart even on a repeated, identical failed submit.
+  const triggerError = (message) => {
+    setError(message)
+    setShake(false)
+    requestAnimationFrame(() => setShake(true))
+  }
+
+  // As soon as the user edits the field, drop the error/shake styling.
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value)
+    if (error) setError('')
+    if (shake) setShake(false)
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     const trimmed = email.trim()
     if (!EMAIL_RE.test(trimmed)) {
-      setError('Please enter a valid email address.')
+      triggerError('Please enter a valid email address.')
       return
     }
     setError('')
+    setShake(false)
     setSubmitting(true)
     try {
       const res = await fetch(apiUrl('/api/waitlist'), {
@@ -78,7 +96,7 @@ export default function ComingSoon() {
       }
       setShowSuccess(true)
     } catch (err) {
-      setError(err.message || 'Something went wrong. Please try again.')
+      triggerError(err.message || 'Something went wrong. Please try again.')
     } finally {
       setSubmitting(false)
     }
@@ -114,14 +132,21 @@ export default function ComingSoon() {
         {done ? (
           <p className="cs-success">Thank you &mdash; we&rsquo;ll be in touch.</p>
         ) : (
-          <form className="cs-form" onSubmit={handleSubmit}>
+          <form
+            className={`cs-form${error ? ' cs-form--error' : ''}`}
+            onSubmit={handleSubmit}
+            noValidate
+          >
             <input
               type="email"
-              className="cs-input"
+              className={`cs-input${shake ? ' cs-input--shake' : ''}`}
               placeholder="Enter your email address"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={handleEmailChange}
+              onAnimationEnd={() => setShake(false)}
               aria-label="Email address"
+              aria-invalid={error ? true : undefined}
+              aria-describedby={error ? 'cs-error-msg' : undefined}
               required
               disabled={submitting}
             />
@@ -130,7 +155,11 @@ export default function ComingSoon() {
             </button>
           </form>
         )}
-        {error && !done && <p className="cs-error" role="alert">{error}</p>}
+        {error && !done && (
+          <p className="cs-error" id="cs-error-msg" role="alert">
+            {error}
+          </p>
+        )}
       </Reveal>
 
       <Reveal className="cs-socials" delay={0.34}>
