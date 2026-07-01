@@ -80,6 +80,8 @@
   background-color: #1b1c1c;
   border: 1px solid rgba(197, 142, 113, 0.1);
   padding: 1px;
+  text-decoration: none;
+  color: inherit;
   transition:
     border-color 0.45s var(--rg-ease),
     transform 0.45s var(--rg-ease),

@@ -4,16 +4,19 @@ import Reveal from './Reveal'
 
 const GEMS = [
   {
+    id: 'rare-ruby',
     name: 'Rare Ruby',
     spec: 'Cushion Cut • Vivid Red',
     img: '/rare-ruby.jpg',
   },
   {
+    id: 'pink-diamond',
     name: 'Pink Diamond',
     spec: 'Radiant Cut • Natural Fancy',
     img: '/pink-diamond.jpg',
   },
   {
+    id: 'yellow-diamond',
     name: 'Yellow Diamond',
     spec: 'Pear Shape • Brilliant Cut',
     img: '/yellow-diamond.jpg',
@@ -36,7 +39,7 @@ export default function Gallery() {
       <div className="gallery-grid">
         {GEMS.map((g, i) => (
           <Reveal key={g.name} className="gallery-cell" delay={0.05 + i * 0.08}>
-            <article className="gallery-card">
+            <Link to={`/gems/${g.id}`} className="gallery-card">
               <div className="gallery-media">
                 <img src={g.img} alt={g.name} className="gallery-photo" />
               </div>
@@ -44,7 +47,7 @@ export default function Gallery() {
                 <h3 className="gallery-name">{g.name}</h3>
                 <p className="gallery-spec">{g.spec}</p>
               </div>
-            </article>
+            </Link>
           </Reveal>
         ))}
       </div>
