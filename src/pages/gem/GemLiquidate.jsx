@@ -1,6 +1,10 @@
 import './GemLiquidate.css'
 
 export default function GemLiquidate() {
+  const handleInquire = () => {
+    window.dispatchEvent(new CustomEvent('rge:open-intake'))
+  }
+
   return (
     <div className="gem-liq">
       {/* Centered content */}
@@ -14,7 +18,7 @@ export default function GemLiquidate() {
           and institutional investors for high-net-worth individuals looking to
           place or acquire exceptional gemstones through private advisory.
         </p>
-        <button className="gem-liq-btn">INQUIRE ABOUT SERVICES</button>
+        <button className="gem-liq-btn" onClick={handleInquire}>INQUIRE ABOUT SERVICES</button>
       </div>
     </div>
   )

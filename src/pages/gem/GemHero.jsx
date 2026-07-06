@@ -63,7 +63,7 @@ export default function GemHero({ gem }) {
         <p className="gem-hero-desc">{gem.description}</p>
 
         <div className="gem-hero-actions">
-          <button className="gem-btn gem-btn--primary">INQUIRE ABOUT THIS GEM</button>
+          <button className="gem-btn gem-btn--primary" onClick={() => window.dispatchEvent(new CustomEvent('rge:open-intake'))}>INQUIRE ABOUT THIS GEM</button>
           <button className="gem-btn gem-btn--secondary">
             <span className="gem-btn-icon" aria-hidden="true">◇</span>
             CONSULT AN EXPERT
