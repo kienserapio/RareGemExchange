@@ -8,18 +8,20 @@ import CollectionPage from './pages/collection/CollectionPage'
 import GemDetailPage from './pages/gem/GemDetailPage'
 import TeamPage from './pages/team/TeamPage'
 import AdminPage from './pages/admin/AdminPage'
+import CaseStudyPage from './pages/casestudy/CaseStudyPage'
 
 function App() {
-  // The admin dashboard is a standalone back-office view — it renders without
-  // the public site chrome (header, footer, concierge).
+  // The admin dashboard and the case-study page are standalone views — they
+  // render without the public site chrome (header, footer, concierge). The
+  // case study is a self-contained page meant to be linked from elsewhere.
   const { pathname } = useLocation()
-  const isAdmin = pathname === '/admin'
+  const isBare = pathname === '/admin' || pathname === '/case-study'
 
   return (
     <div className="page">
       <div className="page-bg" />
 
-      {!isAdmin && <Header />}
+      {!isBare && <Header />}
 
       <main className="page-main">
         <Routes>
@@ -28,12 +30,13 @@ function App() {
           <Route path="/gems/:id" element={<GemDetailPage />} />
           <Route path="/team" element={<TeamPage />} />
           <Route path="/admin" element={<AdminPage />} />
+          <Route path="/case-study" element={<CaseStudyPage />} />
         </Routes>
       </main>
 
-      {!isAdmin && <Footer />}
+      {!isBare && <Footer />}
 
-      {!isAdmin && <Chatbot />}
+      {!isBare && <Chatbot />}
     </div>
   )
 }
